@@ -12,12 +12,13 @@ export default class Game extends React.Component {
       answer: Math.floor((Math.random() * 100) + 1),
       currentGuess: '',
       currentCount: 0,
-      guessHistory: [1, 2, 45],
+      guessHistory: [],
       feedback: '',
       overlay: false
     };
   }
   
+
   switchOverlay(){
     const currentOverlay = this.state.overlay;
     this.setState({
@@ -28,7 +29,8 @@ export default class Game extends React.Component {
   onSubmit(currentGuess){
     this.setState({
       currentGuess: currentGuess,
-      currentCount: this.state.currentCount + 1
+      currentCount: this.state.currentCount + 1,
+      guessHistory: this.state.guessHistory.concat(currentGuess)
     });
 
   }
