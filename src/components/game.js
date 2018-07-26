@@ -26,15 +26,38 @@ export default class Game extends React.Component {
   }
 
   onSubmit(currentGuess){
-    if (currentGuess == this.state.answer) {
-      this.setState({
-        feedback: "You win!"
-      })
+
+    const currentGuessNum = parseInt(currentGuess);
+    const difference = Math.abs(this.state.answer - currentGuessNum);
+
+    let feedback = 'Make your guess!';
+    
+    
+    if (difference > 50) {
+      feedback = 'You\`re in absolute zero';
+    }
+    if (difference <= 50) {
+      feedback = 'You\'re very cold';
+    }
+    if (difference <= 30) {
+      feedback = 'You\'re cold';
+    }
+    if (difference <= 15) {
+      feedback = 'You\'re warm';
+    }
+    if (difference <= 5) {
+      feedback = 'You\'re hot!';
+    } 
+    
+    
+    if (currentGuessNum === this.state.answer) {
+      feedback = 'You win!';
     }
     this.setState({
-      currentGuess: currentGuess,
+      currentGuess: currentGuessNum,
       currentCount: this.state.currentCount + 1,
-      guessHistory: this.state.guessHistory.concat(currentGuess)
+      guessHistory: this.state.guessHistory.concat(currentGuessNum),
+      feedback: feedback
     });
 
   }
