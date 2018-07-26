@@ -62,12 +62,23 @@ export default class Game extends React.Component {
 
   }
 
+  resetGame(){
+    this.setState({
+      answer: Math.floor((Math.random() * 100) + 1),
+      currentGuess: null,
+      currentCount: 0,
+      guessHistory: [],
+      feedback: 'Make your guess!',
+      overlay: false
+    })
+  }
+
 
   render() {
         
     return (
         <div>
-            <Header onClick={() => this.switchOverlay(this.state.overlay)} overlay={this.state.overlay}/>
+            <Header switchOverlay={() => this.switchOverlay()} overlay={this.state.overlay} resetGame={() => this.resetGame()}/>
             <GuessSection feedback={this.state.feedback} onSubmit={(currentGuess) => this.onSubmit(currentGuess)} />
             <GuessCount count={this.state.currentCount} />
             <GuessList guesses={this.state.guessHistory} />
