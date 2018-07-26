@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './info-modal.css';
+import './styles/info-modal.css';
 
 export default function InfoModal(props) {
-    return (
+  return (
         <div className="overlay" id="modal">
             <div className="content">
                 <h3>What do I do?</h3>

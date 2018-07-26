@@ -5,14 +5,28 @@ import GuessSection from './guess-section';
 import GuessCount  from './guess-count';
 import GuessList from './guess-list';
 
-export default function Game(props) {
+export default class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      answer: Math.floor((Math.random() * 100) + 1),
+      currentGuess: '',
+      guessHistory: [],
+      feedback: ''
+
+    };
+  }
+
+  render() {
+        
     return (
         <div>
             <Header />
-            <GuessSection feedback="Make your guess!" />
+            <GuessSection feedback="Make your guess!" onSubmit={currentGuess => this.setState({currentGuess})} />
             <GuessCount count={3} />
             <GuessList guesses={[10, 15, 25]} />
         </div>
     );
+  }
 }
 
